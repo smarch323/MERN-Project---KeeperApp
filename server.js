@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 // online cyclic instructions
 const PORT = process.env.PORT || 8000; 
@@ -16,6 +17,19 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(express.json());
+
+
+// //serve the front-end
+// app.use(express.static(path.join(__dirname, "./keeper-app/build")));
+// app.get("*", function (_, res) {
+//   res.sendFile(
+//     path.join(__dirname, "./keeper-app/build/index.html"),
+//     function (err) {
+//       res.status(500).send(err);
+//     }
+//   );
+// });
+
 
  
 mongoose.set('strictQuery', false);

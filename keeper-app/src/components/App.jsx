@@ -1,7 +1,7 @@
 /* 
 1. Replace Server.js URL from local host
 2. Restructure folders
-3. Add Notes Pages
+3. Add Notes Categories / Pages / Modules
 4. Add Color Options
 5. Add Authentication
 6. Add to Github + Cyclic
@@ -19,9 +19,9 @@ import CreateArea from "./CreateArea";
 import axios from "axios";
 
 
-const PORT = process.env.PORT || 8000; 
+const PORT = process.env.PORT || 3000; 
 const client = axios.create({
-  baseURL: "http://localhost:8000/notes"
+  baseURL:  'http://localhost:8000/notes'
 });
 
 
