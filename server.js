@@ -108,6 +108,6 @@ app.delete('/notes/:id', (req, res) => {
   //Recommended cyclic connection
   connectDB().then(() => {
     app.listen(PORT, () => {
-      console.log('Listening on port $(PORT)')
+      console.log('Listening on port ${PORT}')
     })
   });
