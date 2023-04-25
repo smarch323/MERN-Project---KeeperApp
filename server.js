@@ -20,15 +20,15 @@ app.use(express.json());
 
 
 // //serve the front-end
-// app.use(express.static(path.join(__dirname, "./keeper-app/build")));
-// app.get("*", function (_, res) {
-//   res.sendFile(
-//     path.join(__dirname, "./keeper-app/build/index.html"),
-//     function (err) {
-//       res.status(500).send(err);
-//     }
-//   );
-// });
+app.use(express.static(path.join(__dirname, "./keeper-app/build")));
+app.get("/", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./keeper-app/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 
  
@@ -36,15 +36,15 @@ mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URI);
 
 //database connection for cyclic
-// const connectDB = async () => {
-//   try{
-//     const conn = await mongoose.connect(process.env.MONGO_URI);
-//     console.log('MongoDB Connected: ${conn.connection.host}');
-//   } catch(error){
-//     console.log(error);
-//     process.exit(1);
-//   }
-// }
+const connectDB = async () => {
+  try{
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log('MongoDB Connected: ${conn.connection.host}');
+  } catch(error){
+    console.log(error);
+    process.exit(1);
+  }
+};
 
 const noteSchema = new mongoose.Schema ({
     title: {
@@ -59,11 +59,11 @@ const noteSchema = new mongoose.Schema ({
  
 const Note = new mongoose.model("Note", noteSchema);
 
-
-app.route('/')
-.get((req, res) => {
-    res.send(`<h1 style='color:gold;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%)'>FallSean In-progress</h1>`)
-});
+// server 8000
+// app.route('/')
+// .get((req, res) => {
+//     res.send(`<h1 style='color:gold;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%)'>FallSean In-progress</h1>`)
+// });
  
 app.route('/notes')
 .get((req, res) => {
@@ -98,16 +98,16 @@ app.delete('/notes/:id', (req, res) => {
  
  
  
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-});
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`)
+// });
 
 
 
 
   //Recommended cyclic connection
-  // connectDB().then(() => {
-  //   app.listen(PORT, () => {
-  //     console.log('Listening on port $(PORT)')
-  //   })
-  // });
+  connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log('Listening on port $(PORT)')
+    })
+  });
