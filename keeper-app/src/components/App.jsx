@@ -19,9 +19,8 @@ import CreateArea from "./CreateArea";
 import axios from "axios";
 
 
-const PORT = process.env.PORT || 3000; 
 const client = axios.create({
-  baseURL:  'http://localhost:8000/notes'
+  baseURL:  '/notes'
 });
 
 
