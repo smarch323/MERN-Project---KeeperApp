@@ -18,16 +18,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 
-// //serve the front-end
-app.use(express.static(path.join(__dirname, "./keeper-app/build")));
-app.get("/", function (req, res) {
-  res.sendFile(
-    path.join(__dirname, "./keeper-app/build/index.html"),
-    function (err) {
-      res.status(500).send(err);
-    }
-  );
-});
+
 
 
  
@@ -63,6 +54,19 @@ const Note = new mongoose.model("Note", noteSchema);
 // .get((req, res) => {
 //     res.send(`<h1 style='color:gold;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%)'>FallSean In-progress</h1>`)
 // });
+
+// //serve the front-end
+app.use(express.static(path.join(__dirname, "./keeper-app/build")));
+app.get("/", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "./keeper-app/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
+
+
  
 app.get('/notes', (req, res) => {
     Note.find().then((foundNotes) => {
