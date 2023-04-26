@@ -32,7 +32,7 @@ app.get("/", function (_, res) {
 
  
 mongoose.set('strictQuery', false);
-mongoose.connect(process.env.MONGO_URI);
+// mongoose.connect(process.env.MONGO_URI);
 
 //database connection for cyclic
 const connectDB = async () => {
@@ -107,6 +107,6 @@ app.delete('/notes/:id', (req, res) => {
   //Recommended cyclic connection
   connectDB().then(() => {
     app.listen(PORT, () => {
-      console.log('Listening on port' ${PORT})
+      console.log('Listening on port ', PORT)
     })
   });
