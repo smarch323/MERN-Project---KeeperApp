@@ -20,7 +20,7 @@ app.use(express.json());
 
 // //serve the front-end
 app.use(express.static(path.join(__dirname, "./keeper-app/build")));
-app.get("/", function (_, res) {
+app.get("*", function (_, res) {
   res.sendFile(
     path.join(__dirname, "./keeper-app/build/index.html"),
     function (err) {
