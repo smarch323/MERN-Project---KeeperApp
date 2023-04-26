@@ -65,16 +65,16 @@ const Note = new mongoose.model("Note", noteSchema);
 //     res.send(`<h1 style='color:gold;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%)'>FallSean In-progress</h1>`)
 // });
  
-app.route('/notes')
-.get((req, res) => {
+app.get('/notes', (req, res) => {
     Note.find().then((foundNotes) => {
     res.send(foundNotes);
     })
     .catch(err => {
         res.send(err);
       })
-})
-.post((req, res) => {
+});
+
+app.post('/notes', (req, res) => {
     const note = new Note ({
         title: req.body.title,
         content: req.body.content
