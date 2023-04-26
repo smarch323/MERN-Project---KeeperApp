@@ -60,9 +60,9 @@ app.use(express.static(path.join(__dirname, "./keeper-app/build")));
 app.get("/", function (req, res) {
   res.sendFile(
     path.join(__dirname, "./keeper-app/build/index.html"),
-    function (err) {
-      res.status(500).send(err);
-    }
+    // function (err) {
+    //   res.status(500).send(err);
+    // }
   );
 });
 
