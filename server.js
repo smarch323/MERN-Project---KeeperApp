@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
  
-app.set('view engine', 'ejs');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
@@ -108,6 +107,6 @@ app.delete('/notes/:id', (req, res) => {
   //Recommended cyclic connection
   connectDB().then(() => {
     app.listen(PORT, () => {
-      console.log('Listening on port ${PORT}')
+      console.log('Listening on port' ${PORT})
     })
   });
