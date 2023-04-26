@@ -20,7 +20,7 @@ app.use(express.json());
 
 // //serve the front-end
 app.use(express.static(path.join(__dirname, "./keeper-app/build")));
-app.get("/", function (_, res) {
+app.get("/", function (req, res) {
   res.sendFile(
     path.join(__dirname, "./keeper-app/build/index.html"),
     function (err) {
@@ -97,16 +97,16 @@ app.delete('/notes/:id', (req, res) => {
  
  
  
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-});
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`)
+// });
 
 
 
 
-  // //Recommended cyclic connection
-  // connectDB().then(() => {
-  //   app.listen(PORT, () => {
-  //     console.log('Listening on port ', PORT)
-  //   })
-  // });
+  //Recommended cyclic connection
+  connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log('Listening on port ', PORT)
+    })
+  });
