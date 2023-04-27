@@ -57,7 +57,18 @@ const Note = new mongoose.model("Note", noteSchema);
 
 // //serve the front-end
 app.use(express.static(path.join(__dirname, "./keeper-app/build")));
-app.get("http://localhost:8000/", function (req, res) {
+
+app.get('/notes', (req, res) => {
+  Note.find().then((foundNotes) => {
+  res.send(foundNotes);
+  })
+  .catch(err => {
+      res.send(err);
+    })
+});
+
+
+app.get("*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "./keeper-app/build/index.html"),
     function (err) {
@@ -68,14 +79,7 @@ app.get("http://localhost:8000/", function (req, res) {
 
 
  
-app.get('/notes', (req, res) => {
-    Note.find().then((foundNotes) => {
-    res.send(foundNotes);
-    })
-    .catch(err => {
-        res.send(err);
-      })
-});
+
 
 app.post('/notes', (req, res) => {
     const note = new Note ({
