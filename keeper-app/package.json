@@ -1,9 +1,9 @@
 {
-  "name": "keeper-app-part-1-starting",
+  "name": "keeper-app",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "./src/index.js",
+  "main": "src/index.js",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
