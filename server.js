@@ -7,8 +7,6 @@ const path = require('path');
 
 // online cyclic instructions
 const PORT = process.env.PORT || 8000; 
- 
-
 
 const app = express();
  
@@ -16,10 +14,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(express.json());
-
-
-
-
 
  
 mongoose.set('strictQuery', false);
@@ -49,12 +43,6 @@ const noteSchema = new mongoose.Schema ({
  
 const Note = new mongoose.model("Note", noteSchema);
 
-// server 8000
-// app.route('/')
-// .get((req, res) => {
-//     res.send(`<h1 style='color:gold;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%)'>FallSean In-progress</h1>`)
-// });
-
 // //serve the front-end
 app.use(express.static(path.join(__dirname, "./keeper-app/build")));
 
@@ -78,9 +66,6 @@ app.get("*", function (req, res) {
 });
 
 
- 
-
-
 app.post('/notes', (req, res) => {
     const note = new Note ({
         title: req.body.title,
@@ -102,19 +87,15 @@ app.delete('/notes/:id', (req, res) => {
                 res.send(err);
               })
 });
- 
- 
- 
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`)
-// });
-
-
-
 
   //Recommended cyclic connection
   connectDB().then(() => {
     app.listen(PORT, () => {
-      console.log('Listening on port ', PORT)
+      console.log('Listening on port ', PORT);
     })
   });
+
+
+  // app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`)
+// });
