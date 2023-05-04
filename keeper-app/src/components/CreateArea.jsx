@@ -5,7 +5,7 @@ import Zoom from '@mui/material/Zoom';
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "http://localhost:8000/notes"
+  baseURL: "/notes"
 });
 
 function CreateArea(props) {
