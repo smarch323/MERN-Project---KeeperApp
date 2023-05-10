@@ -58,7 +58,7 @@ app.get('/notes', (req, res) => {
 
 app.get("*", function (req, res) {
   res.sendFile(
-    path.join(__dirname, "./keeper-app/build/index.html"),
+    path.join(__dirname, "./keeper-app/build/", "index.html"),
     function (err) {
       res.status(500).send(err);
     }
