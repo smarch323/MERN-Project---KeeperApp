@@ -17,18 +17,18 @@ app.use(express.json());
 
  
 mongoose.set('strictQuery', false);
-// mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI);
 
 //database connection for cyclic
-const connectDB = async () => {
-  try{
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected: " + conn.connection.host);
-  } catch(error){
-    console.log(error);
-    process.exit(1);
-  }
-};
+// const connectDB = async () => {
+//   try{
+//     const conn = await mongoose.connect(process.env.MONGO_URI);
+//     console.log("MongoDB Connected: " + conn.connection.host);
+//   } catch(error){
+//     console.log(error);
+//     process.exit(1);
+//   }
+// };
 
 const noteSchema = new mongoose.Schema ({
     title: {
@@ -58,7 +58,7 @@ app.get('/notes', (req, res) => {
 
 app.get("*", function (req, res) {
   res.sendFile(
-    path.join(__dirname, "./keeper-app/build/", "index.html"),
+    path.join(__dirname, "./keeper-app/build/index.html"),
     function (err) {
       res.status(500).send(err);
     }
@@ -89,16 +89,16 @@ app.delete('/notes/:id', (req, res) => {
 });
 
   //Recommended cyclic connection
-  connectDB().then(() => {
-    app.listen(PORT, () => {
-      console.log('Listening on port ', PORT);
-    })
-  });
+  // connectDB().then(() => {
+  //   app.listen(PORT, () => {
+  //     console.log('Listening on port ', PORT);
+  //   })
+  // });
 
 
-  // app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`)
-// });
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+});
 
 // Pulled out of package.json
 // "build": "cd ./keeper-app && npm install && npm run build",
